@@ -22,12 +22,12 @@ jobs:
       - get: go-builder
       - load_var: version
         file: repo/VERSION
-      - task: concourse-poc-task
+      - task: concourse-poc-task-build
         image: go-builder
         params:
           VERSION: ((.:version))
         file: repo/ci/tasks/go-build.yml
-      - task: concourse-poc-task
+      - task: concourse-poc-task-test
         image: go-builder
         params:
           VERSION: ((.:version))
