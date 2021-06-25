@@ -33,3 +33,8 @@ jobs:
         params:
           VERSION: ((.:version))
         file: repo/ci/tasks/go-test.yml
+      - task: concourse-poc-task-coverage
+        image: go-builder
+        params:
+          VERSION: ((.:version))
+        file: repo/ci/tasks/go-coverage.yml
