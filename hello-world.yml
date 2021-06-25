@@ -6,6 +6,7 @@ resources:
       branch: main
     webhook_token: abcd
     check_every: never
+    icon: github
 
 jobs:
   - name: hello-world-job
