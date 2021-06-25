@@ -14,14 +14,14 @@ jobs:
       # Add a get step referencing the resource
       - get: repo
         trigger: true   # tell Concourse to trigger this job when new versions are emitted
-        - task: concourse-poc-task
+      - task: concourse-poc-task
         config:
           platform: linux
           image_resource:
             type: registry-image
             source:
               repository: golang:1.16
-          inputs: # add the get step as an input to this task
+          inputs:
             - name: repo
           run:
             path: sh
