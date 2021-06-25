@@ -25,5 +25,5 @@ jobs:
             args:
               - -cx
               - |
-                VERSION=$(cat VERSION)
+                VERSION=$(cat repo/VERSION)
                 echo "Version is: $VERSION"
