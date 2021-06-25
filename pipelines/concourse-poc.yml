@@ -21,6 +21,7 @@ jobs:
             type: registry-image
             source:
               repository: golang
+              tag: 1.16
           inputs:
             - name: repo
           run:
