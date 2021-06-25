@@ -7,6 +7,11 @@ resources:
     webhook_token: abcd
     check_every: never
     icon: github
+  - name: go-builder
+    type: registry-image
+    source:
+      repository: golang
+      tag: 1.16
 
 jobs:
   - name: concourse-poc-job
@@ -17,22 +22,12 @@ jobs:
       - load_var: version
         file: repo/VERSION
       - task: concourse-poc-task
+        image: go-builder
         params:
           VERSION: ((.:version))
-        config:
-          platform: linux
-          image_resource:
-            type: registry-image
-            source:
-              repository: golang
-              tag: 1.16
-          inputs:
-            - name: repo
-          run:
-            path: sh
-            args:
-              - -cx
-              - |
-                echo Building version $VERSION
-                cd repo
-                make build
+        file: repo/ci/tasks/go-build.yml
+      - task: concourse-poc-task
+        image: go-builder
+        params:
+          VERSION: ((.:version))
+        file: repo/ci/tasks/go-test.yml
