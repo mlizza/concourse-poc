@@ -1,0 +1,28 @@
+resources:
+  - name: repo
+    type: git
+    source:
+      uri: https://github.com/mlizza/concourse-poc.git
+      branch: main
+
+jobs:
+  - name: hello-world-job
+    plan:
+      # Add a get step referencing the resource
+      - get: repo
+        trigger: true   # tell Concourse to trigger this job when new versions are emitted
+      - task: hello-world-task
+        config:
+          platform: linux
+          image_resource:
+            type: registry-image
+            source:
+              repository: busybox
+          run:
+            path: sh
+            sh
+            args:
+              - -cx
+              - |
+                VERSION=$(cat VERSION)
+                echo "Version is: $VERSION"
