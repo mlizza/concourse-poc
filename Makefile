@@ -23,7 +23,8 @@ version:
 test:
 	@echo "Running unit tests .."
 	go get -u github.com/jstemmer/go-junit-report
-	go test ./... -v -cover -coverprofile=c.out 2>&1 | go-junit-report > report.xml
+	#go test ./... -v -cover -coverprofile=c.out 2>&1 | go-junit-report > report.xml
+	go test ./... -v -cover -coverprofile=c.out
 
 coverage:
 	@echo "Coverage .."
