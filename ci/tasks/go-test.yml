@@ -3,6 +3,9 @@ platform: linux
 inputs:
   - name: repo
 
+outputs:
+  - name: repo
+
 run:
   path: sh
   args:
