@@ -5,6 +5,7 @@ resources:
       uri: https://github.com/mlizza/concourse-poc.git
       branch: main
     webhook_token: abcd
+    check_every: never
 
 jobs:
   - name: hello-world-job
