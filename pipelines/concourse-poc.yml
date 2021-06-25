@@ -14,7 +14,7 @@ jobs:
       # Add a get step referencing the resource
       - get: repo
         trigger: true   # tell Concourse to trigger this job when new versions are emitted
-      - load_var: VERSION
+      - load_var: version
         file: repo/VERSION
       - task: concourse-poc-task
         config:
@@ -31,6 +31,6 @@ jobs:
             args:
               - -cx
               - |
-                echo Building version ((.:VERSION))
+                echo Building version ((.:version))
                 cd repo
                 make build
