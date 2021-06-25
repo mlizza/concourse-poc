@@ -17,6 +17,8 @@ jobs:
       - load_var: version
         file: repo/VERSION
       - task: concourse-poc-task
+        params:
+          VERSION: ((.:version))
         config:
           platform: linux
           image_resource:
@@ -31,6 +33,6 @@ jobs:
             args:
               - -cx
               - |
-                echo Building version ((.:version))
+                echo Building version $VERSION
                 cd repo
                 make build
