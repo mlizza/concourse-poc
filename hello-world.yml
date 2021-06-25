@@ -4,7 +4,7 @@ resources:
     source:
       uri: https://github.com/mlizza/concourse-poc.git
       branch: main
-      webhook_token: abcd
+    webhook_token: abcd
 
 jobs:
   - name: hello-world-job
