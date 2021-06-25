@@ -8,6 +8,7 @@ resources:
     check_every: never
     icon: github
   - name: go-builder
+    icon: docker
     type: registry-image
     source:
       repository: golang
