@@ -18,6 +18,8 @@ jobs:
             type: registry-image
             source:
               repository: busybox
+          inputs: # add the get step as an input to this task
+            - name: repo
           run:
             path: sh
             args:
