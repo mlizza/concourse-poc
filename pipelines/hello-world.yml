@@ -4,8 +4,8 @@ resources:
     source:
       uri: https://github.com/mlizza/concourse-poc.git
       branch: main
-    webhook_token: abcd
-    check_every: never
+    #webhook_token: abcd
+    #check_every: never
     icon: github
 
 jobs:
