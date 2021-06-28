@@ -35,8 +35,8 @@ jobs:
       - get: repo
         trigger: true   # tell Concourse to trigger this job when new versions are emitted
       - get: go-builder
-      - get: version-bumper
-        params: { pre: build }
+#      - get: version-bumper
+#        params: { pre: build }
       - load_var: version
         file: repo/VERSION
       - task: concourse-poc-task-printenv
@@ -70,7 +70,9 @@ jobs:
           VERSION: ((.:version))
         file: repo/ci/tasks/go-coverage.yml
       - put: version-bumper
-        params: { file: repo/VERSION }
+        params:
+          file: repo/VERSION
+          bump: minor
 #      - put: repo
 #        params:
 #          tag: repo/VERSION
