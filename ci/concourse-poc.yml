@@ -5,11 +5,11 @@ resources:
     source:
       uri: https://github.com/mlizza/concourse-poc.git
       branch: main
+      username: ((mlizza/username))
+      password: ((mlizza/password))
     webhook_token: abcd
     check_every: never
     icon: github
-    #username: ((ci.username))
-    #password: ((ci.password))
   # Builder
   - name: go-builder
     icon: docker
@@ -32,16 +32,16 @@ jobs:
         params:
           VERSION: ((.:version))
         file: repo/ci/tasks/go-version.yml
-      - task: concourse-poc-task-secrets
-        image: go-builder
-        config:
-          platform: linux
-          run:
-            path: sh
-            args:
-              - -cx
-              - |
-                echo "((mlizza/username))"
+#      - task: concourse-poc-task-secrets
+#        image: go-builder
+#        config:
+#          platform: linux
+#          run:
+#            path: sh
+#            args:
+#              - -cx
+#              - |
+#                echo "((mlizza/username))"
       - task: concourse-poc-task-build
         image: go-builder
         params:
@@ -57,3 +57,7 @@ jobs:
         params:
           VERSION: ((.:version))
         file: repo/ci/tasks/go-coverage.yml
+      - put: repo
+        params:
+          tag: ((.:version))
+          tag_prefix: v
