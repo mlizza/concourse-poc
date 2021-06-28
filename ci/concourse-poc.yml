@@ -17,15 +17,6 @@ resources:
     source:
       repository: golang
       tag: 1.16
-  - name: version
-    type: semver
-    source:
-      driver: git
-      uri: https://github.com/mlizza/concourse-poc.git
-      branch: main
-      username: ((mlizza/username))
-      password: ((mlizza/password))
-      file: version
 
 jobs:
   - name: concourse-poc-job
@@ -34,34 +25,31 @@ jobs:
       - get: repo
         trigger: true   # tell Concourse to trigger this job when new versions are emitted
       - get: go-builder
-#      - load_var: version
-#        file: repo/VERSION
-      - get: version
+      - load_var: version
+        file: repo/VERSION
       - task: concourse-poc-task-version
         image: go-builder
-#        params:
-#          VERSION: ((.:version))
+        params:
+          VERSION: ((.:version))
         file: repo/ci/tasks/go-version.yml
       - task: concourse-poc-task-build
         image: go-builder
-#        params:
-#          VERSION: ((.:version))
+        params:
+          VERSION: ((.:version))
         file: repo/ci/tasks/go-build.yml
       - task: concourse-poc-task-test
         image: go-builder
-#        params:
-#          VERSION: ((.:version))
+        params:
+          VERSION: ((.:version))
         file: repo/ci/tasks/go-test.yml
       - task: concourse-poc-task-coverage
         image: go-builder
-#        params:
-#          VERSION: ((.:version))
+        params:
+          VERSION: ((.:version))
         file: repo/ci/tasks/go-coverage.yml
-#      - put: version
-#        params: { file: version/number }
       - put: repo
         params:
-          tag: version/version
+          tag: repo/version
           tag_prefix: v
           repository: repo
           branch: main
