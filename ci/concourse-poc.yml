@@ -58,8 +58,8 @@ jobs:
 #        params:
 #          VERSION: ((.:version))
         file: repo/ci/tasks/go-coverage.yml
-      - put: version
-        params: { file: version/number }
+#      - put: version
+#        params: { file: version/number }
 #      - put: repo
 #        params:
 #          tag: repo/VERSION
