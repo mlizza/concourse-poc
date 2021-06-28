@@ -24,7 +24,8 @@ resources:
       driver: git
       uri: https://github.com/mlizza/concourse-poc.git
       branch: main
-      file: repo/VERSION
+      file: ver
+      initial_version: 0.0.1
       username: ((mlizza/username))
       password: ((mlizza/password))
 
@@ -35,10 +36,10 @@ jobs:
       - get: repo
         trigger: true   # tell Concourse to trigger this job when new versions are emitted
       - get: go-builder
-#      - get: version-bumper
-#        params: { pre: build }
-      - load_var: version
-        file: repo/VERSION
+      - get: version-bumper
+        params: { pre: build }
+#      - load_var: version
+#        file: repo/VERSION
       - task: concourse-poc-task-printenv
         image: go-builder
         config:
@@ -71,7 +72,7 @@ jobs:
         file: repo/ci/tasks/go-coverage.yml
       - put: version-bumper
         params:
-          file: repo/VERSION
+          file: ver
           bump: minor
 #      - put: repo
 #        params:
