@@ -41,7 +41,7 @@ jobs:
             args:
               - -cx
               - |
-                echo "((mlizza.username))"
+                echo "((mlizza/username))"
       - task: concourse-poc-task-build
         image: go-builder
         params:
