@@ -26,7 +26,7 @@ resources:
       branch: main
       username: ((mlizza/username))
       password: ((mlizza/password))
-      file: version
+      file: VERSION
 
 jobs:
   - name: concourse-poc-job
@@ -38,7 +38,6 @@ jobs:
 #      - load_var: version
 #        file: repo/VERSION
       - get: version
-        params: { pre: build }
       - task: concourse-poc-task-version
         image: go-builder
 #        params:
