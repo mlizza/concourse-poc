@@ -10,4 +10,4 @@ run:
     - |
       echo Building version $VERSION
       cd repo
-      make version
+      cat $VERSION-$BUILD_ID

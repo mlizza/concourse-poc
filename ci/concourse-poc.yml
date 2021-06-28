@@ -17,17 +17,6 @@ resources:
     source:
       repository: golang
       tag: 1.16
-  # Semver
-  - name: version-bumper
-    type: semver
-    source:
-      driver: git
-      uri: https://github.com/mlizza/concourse-poc.git
-      branch: main
-      file: ver
-      initial_version: 0.0.1
-      username: ((mlizza/username))
-      password: ((mlizza/password))
 
 jobs:
   - name: concourse-poc-job
@@ -36,8 +25,6 @@ jobs:
       - get: repo
         trigger: true   # tell Concourse to trigger this job when new versions are emitted
       - get: go-builder
-      - get: version-bumper
-        params: { pre: build }
       - load_var: version
         file: repo/VERSION
       - task: concourse-poc-task-printenv
@@ -70,13 +57,9 @@ jobs:
         params:
           VERSION: ((.:version))
         file: repo/ci/tasks/go-coverage.yml
-      - put: version-bumper
+      - put: repo
         params:
-          file: ver
-          bump: minor
-#      - put: repo
-#        params:
-#          tag: repo/VERSION
-#          tag_prefix: v
-#          repository: repo
-#          branch: main
+          tag: repo/VERSION
+          tag_prefix: v
+          repository: repo
+          branch: main
