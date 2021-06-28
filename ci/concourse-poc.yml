@@ -59,7 +59,7 @@ jobs:
         file: repo/ci/tasks/go-coverage.yml
       - put: repo
         params:
-          tag: ((.:version))
+          tag: repo/VERSION
           tag_prefix: v
           repository: repo
           branch: main
