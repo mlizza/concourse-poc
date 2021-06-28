@@ -13,4 +13,4 @@ run:
     - |
       echo Building version $VERSION
       cd repo
-      echo $VERSION-$BUILD_ID > VERSION
+      echo $VERSION
