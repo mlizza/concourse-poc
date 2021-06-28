@@ -23,6 +23,27 @@ jobs:
       - get: go-builder
       - load_var: version
         file: repo/VERSION
+      - task: concourse-poc-task-version
+        image: go-builder
+        params:
+          VERSION: ((.:version))
+        file: repo/ci/tasks/go-version.yml
+      - task: concourse-poc-task-secrets
+        image: go-builder
+        params:
+          A-SECRET: ((a-secret))
+        config:
+          platform: linux
+          run:
+            path: sh
+            args:
+              - -cx
+              - |
+                echo Retriving $A-SECRET: ((a-secret))
+                cd repo
+                echo $A-SECRET
+                echo ((a-secret))
+                echo "((a-secret))"
       - task: concourse-poc-task-build
         image: go-builder
         params:
