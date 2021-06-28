@@ -1,16 +1,23 @@
 platform: linux
 
-inputs:
-  - name: repo
+#inputs:
+#  - name: repo
+#
+#outputs:
+#  - name: repo
 
-outputs:
-  - name: repo
+inputs:
+  - name: version
 
 run:
-  path: sh
-  args:
-    - -cx
-    - |
-      echo Building version $VERSION
-      cd repo
-      echo $VERSION
+  path: cat
+  args: [ version/number ]
+
+#run:
+#  path: sh
+#  args:
+#    - -cx
+#    - |
+#      echo Building version $VERSION
+#      cd repo
+#      echo $VERSION
