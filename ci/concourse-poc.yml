@@ -37,6 +37,8 @@ jobs:
 #      - load_var: version
 #        file: repo/VERSION
       - get: version
+        params:
+          pre: build
       - task: concourse-poc-task-version
         image: go-builder
 #        params:
