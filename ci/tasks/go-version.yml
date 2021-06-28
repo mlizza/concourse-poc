@@ -11,7 +11,7 @@ inputs:
 
 run:
   path: cat
-  args: [ version/ver ]
+  args: [ version/version ]
 
 #run:
 #  path: sh

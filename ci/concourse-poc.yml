@@ -22,11 +22,10 @@ resources:
     source:
       driver: git
       uri: https://github.com/mlizza/concourse-poc.git
-      initial_version: 0.0.1
       branch: main
       username: ((mlizza/username))
       password: ((mlizza/password))
-      file: ver
+      file: version
 
 jobs:
   - name: concourse-poc-job
@@ -62,7 +61,7 @@ jobs:
 #        params: { file: version/number }
       - put: repo
         params:
-          tag: version/ver
+          tag: version/version
           tag_prefix: v
           repository: repo
           branch: main
