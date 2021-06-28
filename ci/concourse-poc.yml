@@ -26,7 +26,7 @@ resources:
       branch: main
       username: ((mlizza/username))
       password: ((mlizza/password))
-      file: version
+      file: ver
 
 jobs:
   - name: concourse-poc-job
@@ -62,7 +62,7 @@ jobs:
 #        params: { file: version/number }
       - put: repo
         params:
-          tag: version/number
+          tag: version/ver
           tag_prefix: v
           repository: repo
           branch: main
