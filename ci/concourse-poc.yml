@@ -61,3 +61,5 @@ jobs:
         params:
           tag: ((.:version))
           tag_prefix: v
+          repository: repo
+          branch: main
