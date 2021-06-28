@@ -38,8 +38,8 @@ jobs:
       - get: go-builder
       - get: version-bumper
         params: { pre: build }
-#      - load_var: version
-#        file: repo/VERSION
+      - load_var: version
+        file: repo/VERSION
       - task: concourse-poc-task-printenv
         image: go-builder
         config:
